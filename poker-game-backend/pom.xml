@@ -12,7 +12,7 @@
     <artifactId>game</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>game</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Poker game application with spring boot</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -43,8 +43,8 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -67,6 +67,11 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.0</version>
         </dependency>
     </dependencies>
 

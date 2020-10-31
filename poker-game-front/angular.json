@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "poker-game-front"
+    }
+  },
+  "defaultProject": "poker-game-front",
+  "cli": {
+    "analytics": "43ed04f9-dc54-4140-9685-70830a81f9d7"
+  }
 }
