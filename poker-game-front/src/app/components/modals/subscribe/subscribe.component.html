@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>Subscribe</h2>
+<mat-dialog-content class="mat-typography">
+<div id="main-container">
+  <form (ngSubmit)="onFormSubmit()">
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text"
+             name="fullName"
+             class="form-control"
+             placeholder="Full Name"
+             autocomplete="off"
+             [(ngModel)]="user.name"/>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email"
+             name="fullName"
+             class="form-control"
+             placeholder="Email"
+             autocomplete="off"
+             (blur)="verifyEmailAvailability()"
+             [(ngModel)]="user.email"/>
+      <p *ngIf="emailUsed" class="text-danger">This email is not available</p>
+    </div>
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text"
+             name="fullName"
+             class="form-control"
+             placeholder="Username"
+             autocomplete="off"
+             (blur)="checkUsernameAvailability()"
+             [(ngModel)]="user.username"/>
+      <p *ngIf="usernameUsed" class="text-danger">This username is not available</p>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password"
+             name="fullName"
+             class="form-control"
+             placeholder="Password"
+             autocomplete="off"
+             [(ngModel)]="user.password"/>
+    </div>
+    <div class="form-group button-container">
+      <button type="submit" class="submit-button">Create Account</button>
+    </div>
+  </form>
+</div>
+
+
+</mat-dialog-content>

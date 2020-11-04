@@ -21,7 +21,7 @@ public class CurrentUser {
         System.out.println("entered get current user");
         if (user == null) {
             org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            this.user = userRepository.findByEmail(principal.getUsername())
+            this.user = userRepository.findByEmailOrUsername(principal.getUsername())
                     .orElseThrow(() -> new NotFoundException("No User found under username " + principal.getUsername()));
         }
         return user;
