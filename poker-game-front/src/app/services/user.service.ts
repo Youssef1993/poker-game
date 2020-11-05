@@ -16,6 +16,13 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
+  public login(identifier: string, password: string): Observable<Value<string>> {
+    const authenticationData: FormData = new FormData();
+    authenticationData.append('identifier', identifier);
+    authenticationData.append('password', password);
+    return this.http.post<Value<string>>(this.BASE_PATH + '/login', authenticationData);
+  }
+
   public isUsernameAvailable(username: string): Observable<Value<boolean>> {
     return this.http.get<Value<boolean>>(this.BASE_PATH + '/usernames/' + username);
   }

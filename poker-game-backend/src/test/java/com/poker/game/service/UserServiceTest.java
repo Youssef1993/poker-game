@@ -42,7 +42,7 @@ class UserServiceTest {
         final String email = "example@mail.com";
         User user = User.builder().email(email).build();
         when(userRepository.existsByEmail(email)).thenReturn(true);
-        InvalidDataException invalidDataException = assertThrows(InvalidDataException.class, () -> userService.createPlayerAccount(user));
+        InvalidDataException invalidDataException = assertThrows(InvalidDataException.class, () -> userService.createPlayerAccountAndGetToken(user));
         verify(userRepository, Mockito.times(1)).existsByEmail(email);
         assertTrue(invalidDataException.getMessage().contains("Email already used"));
     }
@@ -52,7 +52,7 @@ class UserServiceTest {
         final String username = "username";
         User user = User.builder().username(username).build();
         when(userRepository.existsByUsername(username)).thenReturn(true);
-        InvalidDataException invalidDataException = assertThrows(InvalidDataException.class, () -> userService.createPlayerAccount(user));
+        InvalidDataException invalidDataException = assertThrows(InvalidDataException.class, () -> userService.createPlayerAccountAndGetToken(user));
         verify(userRepository, Mockito.times(1)).existsByUsername(username);
         assertTrue(invalidDataException.getMessage().contains("Username already used"));
     }
@@ -70,7 +70,7 @@ class UserServiceTest {
         when(userRepository.save(user)).thenReturn(user);
         when(authenticationManager.authenticate(any())).thenReturn(null);
         when(jwtTokenProvider.createToken(user.getEmail(), Role.ROLE_PLAYER)).thenReturn("token");
-        String token = userService.createPlayerAccount(user);
+        String token = userService.createPlayerAccountAndGetToken(user);
         assertEquals(token, "token", "valid token returned");
         assertEquals(user.getPassword(), "Encrypted Password", "password was encrypted");
         assertEquals(user.getRole(), Role.ROLE_PLAYER, "Role has been affected correctly");

@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Login</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="main-container">
+    <p class="text-danger error-message"><span *ngIf="loginFailed">Invalid Login and/or password</span></p>
+    <form (ngSubmit)="authenticate()">
+      <div class="form-group">
+        <label>Username or Email</label>
+        <input type="text" name="username"
+               class="form-control"
+               placeholder="Username Or Email"
+               [(ngModel)]="username"
+               required="required"/>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password"
+               class="form-control"
+               placeholder="Password"
+               [(ngModel)]="password"
+               required="required"/>
+      </div>
+      <div class="form-group button-container">
+        <button type="submit" class="app-button submit-button">Connect</button>
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>

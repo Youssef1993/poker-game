@@ -19,8 +19,8 @@ public class UsersController {
     private final UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticate(@RequestParam("email") @NotBlank String email, @RequestParam("password") @NotBlank String password) {
-        return new ResponseEntity<>(new BoxedValue<>(userService.authenticate(email, password)), HttpStatus.OK);
+    public ResponseEntity<?> authenticate(@RequestParam("identifier") @NotBlank String identifier, @RequestParam("password") @NotBlank String password) {
+        return new ResponseEntity<>(new BoxedValue<>(userService.authenticate(identifier, password)), HttpStatus.OK);
     }
 
     @GetMapping("/emails/{email}")
@@ -35,7 +35,7 @@ public class UsersController {
 
     @PostMapping
     public ResponseEntity<BoxedValue<String>> createAccount(@RequestBody @Valid UserSubscription userSubscription) {
-        String token = userService.createPlayerAccount(userSubscription.toEntity());
+        String token = userService.createPlayerAccountAndGetToken(userSubscription.toEntity());
         return new ResponseEntity<>(new BoxedValue<>(token) ,HttpStatus.CREATED);
     }
 }

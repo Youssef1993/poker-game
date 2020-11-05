@@ -10,12 +10,14 @@ import {FormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import {HttpClientModule} from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
-    SubscribeComponent
+    SubscribeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   ],
   providers: [],
   entryComponents: [
-    SubscribeComponent
+    SubscribeComponent,
+    LoginComponent
   ],
   bootstrap: [AppComponent]
 })

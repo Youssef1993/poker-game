@@ -26,7 +26,7 @@ public class UserServiceIntegrationTest {
                 .username("username")
                 .password("password")
                 .build();
-        userService.createPlayerAccount(user);
+        userService.createPlayerAccountAndGetToken(user);
         assertNotNull(user.getId());
         assertTrue(userRepository.findByEmailOrUsername(user.getUsername()).isPresent());
         assertTrue(userRepository.findByEmailOrUsername(user.getEmail()).isPresent());
@@ -40,17 +40,17 @@ public class UserServiceIntegrationTest {
                 .username("username")
                 .password("password")
                 .build();
-        userService.createPlayerAccount(firstUser);
+        userService.createPlayerAccountAndGetToken(firstUser);
         User secondUser = User.builder().name("second user")
                 .username("secondUsername")
                 .email("email@mail.com")
                 .password("password").build();
-        assertThrows(InvalidDataException.class, () -> userService.createPlayerAccount(secondUser));
+        assertThrows(InvalidDataException.class, () -> userService.createPlayerAccountAndGetToken(secondUser));
         User thirdUser = User.builder().name("second user")
                 .username("secondUsername")
                 .email("email@mail.com")
                 .password("password").build();
-        assertThrows(InvalidDataException.class, () -> userService.createPlayerAccount(thirdUser));
+        assertThrows(InvalidDataException.class, () -> userService.createPlayerAccountAndGetToken(thirdUser));
 
     }
 }

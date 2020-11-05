@@ -23,11 +23,11 @@ public class UserService {
     private final JwtTokenProvider jwtTokenProvider;
     private final BCryptPasswordEncoder encoder;
 
-    public String authenticate(String email, String password) {
-        User user = repository.findByEmailOrUsername(email)
-                .orElseThrow(() -> new NotFoundException(String.format("No user found under id : %s", email)));
+    public String authenticate(String identifier, String password) {
+        User user = repository.findByEmailOrUsername(identifier)
+                .orElseThrow(() -> new NotFoundException(String.format("No user found under id : %s", identifier)));
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(identifier, password));
             return jwtTokenProvider.createToken(user.getEmail(), user.getRole());
         }catch (Exception e) {
             throw new NotFoundException("Invalid email/password supplied !");
@@ -35,7 +35,7 @@ public class UserService {
     }
 
     @Transactional
-    public String createPlayerAccount(User user) {
+    public String createPlayerAccountAndGetToken(User user) {
         if (!isEmailAvailable(user.getEmail())) {
             throw new InvalidDataException("Email already used !!");
         }

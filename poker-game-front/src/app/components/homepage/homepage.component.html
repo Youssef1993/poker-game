@@ -2,7 +2,7 @@
 
 </div>
 <div class="buttons-container">
-  <button class="login-button" *ngIf="!isUserAuthenticated">Login</button>
+  <button class="login-button" *ngIf="!isUserAuthenticated" (click)="openLoginDialog()">Login</button>
   <button class="create-account-button" (click)="openCreateAccountDialog()"  *ngIf="!isUserAuthenticated">Create account</button>
 
   <button class="play-as-anonymous-button" *ngIf="isUserAuthenticated">Join Game</button>
